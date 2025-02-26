@@ -6,8 +6,7 @@ import store from "./redux/store";
 import { Route, RouterProvider, createRoutesFromElements } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
 
-import PrivateRoute from "./components/PrivateRoute";
-
+// 
 // Auth
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
@@ -35,6 +34,7 @@ import Order from "./pages/Orders/Order.jsx";
 import OrderList from "./pages/Admin/OrderList.jsx";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
+import PrivateRoute from "./Components/PrivateRoute.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -48,7 +48,7 @@ const router = createBrowserRouter(
       <Route path="/shop" element={<Shop />} />
 
       {/* Registered users */}
-      <Route path="" element={<PrivateRoute />}>
+      <Route path="" element={<PrivateRoute/>}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/placeorder" element={<PlaceOrder />} />
