@@ -1,8 +1,17 @@
-# React + Vite
+E-commerce Frontend
+This is the frontend of an e-commerce platform built with React and TailwindCSS. It allows users to browse products, search for items, add products to their cart, and make purchases. Admins can manage products and orders through a dashboard.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Features
+Responsive Design for all devices
+Product Listing and Search Functionality
+Product Details Page
+Add to Cart and Checkout Workflow
+User Authentication (Login, Signup)
+Admin Dashboard for Product and Order Management
+State Management using Redux Toolkit
+Integration with Backend API
+Tech Stack
+React: Frontend framework for building UI components
+Redux Toolkit: State management for predictable state container
+React Router: For navigation and routing
+TailwindCSS: Utility-first CSS framework for styling
