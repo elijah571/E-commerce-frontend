@@ -1,4 +1,4 @@
-import Loader from "../../components/Loader";
+import Loader from "../../Components/Loader";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";

@@ -1,5 +1,5 @@
-import Loader from "../../components/Loader";
-import Message from "../../components/Message";
+import Loader from "../../Components/Loader";
+import Message from "../../Components/Message";
 import { useEffect, useState } from "react";
 import { FaCheck, FaEdit, FaTimes, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";

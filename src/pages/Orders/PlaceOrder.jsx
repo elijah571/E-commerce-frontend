@@ -1,6 +1,6 @@
-import Loader from "../../components/Loader";
-import Message from "../../components/Message";
-import ProgressSteps from "../../components/ProgressSteps";
+import Loader from "../../Components/Loader";
+import Message from "../../Components/Message";
+import ProgressSteps from "../../Components/ProgressSteps";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";

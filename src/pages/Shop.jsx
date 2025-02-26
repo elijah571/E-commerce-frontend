@@ -1,4 +1,4 @@
-import Loader from "../components/Loader";
+import Loader from "../Components/Loader";
 import ProductCard from "./Products/ProductCard";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

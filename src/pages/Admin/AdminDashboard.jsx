@@ -1,5 +1,5 @@
 import Chart from "react-apexcharts";
-import Loader from "../../components/Loader";
+import Loader from "../../Components/Loader";
 import OrderList from "./OrderList";
 import { useEffect, useState } from "react";
 import { useGetUsersQuery } from "../../redux/api/usersApiSlice";

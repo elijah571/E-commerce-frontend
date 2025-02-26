@@ -1,5 +1,5 @@
-import Loader from "../../components/Loader";
-import Messsage from "../../components/Message";
+import Loader from "../../Components/Loader";
+import Messsage from "../../Components/Message";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";

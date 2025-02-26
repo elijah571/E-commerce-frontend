@@ -1,6 +1,6 @@
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import Message from "../../components/Message";
+import Message from "../../Components/Message";
 import Slider from "react-slick";
 import moment from "moment";
 import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";

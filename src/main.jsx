@@ -6,7 +6,7 @@ import store from "./redux/store";
 import { Route, RouterProvider, createRoutesFromElements } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
 
-// 
+
 // Auth
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
@@ -48,7 +48,7 @@ const router = createBrowserRouter(
       <Route path="/shop" element={<Shop />} />
 
       {/* Registered users */}
-      <Route path="" element={<PrivateRoute/>}>
+      <Route path="" element={<PrivateRoute />}>
         <Route path="/profile" element={<Profile />} />
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/placeorder" element={<PlaceOrder />} />

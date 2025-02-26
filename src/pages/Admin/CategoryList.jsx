@@ -1,5 +1,5 @@
-import CategoryForm from "../../components/CategoryForm";
-import Modal from "../../components/Modal";
+import CategoryForm from "../../Components/CategoryForm";
+import Modal from "../../Components/Modal";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
