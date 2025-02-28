@@ -76,18 +76,17 @@ const Shop = () => {
   return (
     <>
       <div className="container mx-auto mt-28">
-        {/* Sidebar toggle button */}
         <button
-          className="fixed top-28 left-4 z-50 text-white bg-pink-600 p-2 rounded-full shadow-lg md:hidden"
+          className="fixed top-28 left-4 z-50 text-white bg-pink-600 p-2 rounded-full shadow-lg overflow-y: md:hidden"
           onClick={toggleSidebar}
         >
           {isSidebarOpen ? <X size={20} /> : <Filter size={20} />}
         </button>
 
-        <div className="flex flex-col md:flex-row">
+        <div className="flex md:flex-row">
           {/* Sidebar Section */}
           <div
-            className={`bg-[#151515] p-3 mt-2 mb-2 w-full md:w-[12rem] fixed md:relative top-28 left-0 h-full transition-transform duration-300 z-40 ${
+            className={`bg-[#151515] p-3 mt-2 mb-2 w-[15rem] md:w-[12rem] fixed md:relative top-28 left-0 h-full transition-transform duration-300 z-40 ${
               isSidebarOpen ? "translate-x-0" : "-translate-x-full"
             }`}
           >
@@ -164,10 +163,9 @@ const Shop = () => {
             </div>
           </div>
 
-          {/* Product Grid Section */}
           <div className="p-3 md:ml-[12rem] w-full">
             <h2 className="h4 text-center mb-2">{products?.length} Products</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div className="flex flex-wrap">
               {filteredProductsQuery.isLoading ? (
                 <Loader />
               ) : products.length === 0 ? (
