@@ -10,9 +10,7 @@ import { clearCartItems } from "../../redux/features/cart/cartSlice";
 
 const PlaceOrder = () => {
   const navigate = useNavigate();
-
   const cart = useSelector((state) => state.cart);
-
   const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 
   useEffect(() => {
@@ -45,7 +43,7 @@ const PlaceOrder = () => {
     <>
       <ProgressSteps step1 step2 step3 />
 
-      <div className="container mx-auto mt-20">
+      <div className="container mx-auto mt-20 px-4">
         {cart.cartItems.length === 0 ? (
           <Message>Your cart is empty</Message>
         ) : (
@@ -89,29 +87,29 @@ const PlaceOrder = () => {
 
         <div className="mt-8">
           <h2 className="text-2xl font-semibold mb-5">Order Summary</h2>
-          <div className="flex justify-between flex-wrap p-8 bg-[#181818]">
-            <ul className="text-lg">
+          <div className="flex flex-col sm:flex-row justify-between sm:px-8 sm:bg-[#181818] py-4 sm:py-8">
+            <ul className="text-lg mb-4 sm:mb-0">
               <li>
-                <span className="font-semibold mb-4">Items:</span> $
+                <span className="font-semibold">Items:</span> $
                 {cart.itemsPrice}
               </li>
               <li>
-                <span className="font-semibold mb-4">Shipping:</span> $
+                <span className="font-semibold">Shipping:</span> $
                 {cart.shippingPrice}
               </li>
               <li>
-                <span className="font-semibold mb-4">Tax:</span> $
+                <span className="font-semibold">Tax:</span> $
                 {cart.taxPrice}
               </li>
               <li>
-                <span className="font-semibold mb-4">Total:</span> $
+                <span className="font-semibold">Total:</span> $
                 {cart.totalPrice}
               </li>
             </ul>
 
             {error && <Message variant="danger">{error.data.message}</Message>}
 
-            <div>
+            <div className="mb-4 sm:mb-0">
               <h2 className="text-2xl font-semibold mb-4">Shipping</h2>
               <p>
                 <strong>Address:</strong> {cart.shippingAddress.address},{" "}

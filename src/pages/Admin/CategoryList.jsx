@@ -10,7 +10,6 @@ import {
   useFetchCategoriesQuery,
 } from "../../redux/api/categoryApiSlice";
 
-
 const CategoryList = () => {
   const { data: categories } = useFetchCategoriesQuery();
   const [name, setName] = useState("");
@@ -86,14 +85,14 @@ const CategoryList = () => {
       }
     } catch (error) {
       console.error(error);
-      toast.error("Category delection failed. Tray again.");
+      toast.error("Category deletion failed. Try again.");
     }
   };
 
   return (
-    <div className="ml-[10rem] flex flex-col md:flex-row mt-20">
-     
-      <div className="md:w-3/4 p-3">
+    <div className="ml-[10rem] flex flex-col md:flex-row mt-20 px-4">
+      {/* Left side (Form for creating categories) */}
+      <div className="md:w-1/3 p-3">
         <div className="h-12">Manage Categories</div>
         <CategoryForm
           value={name}
@@ -102,18 +101,22 @@ const CategoryList = () => {
         />
         <br />
         <hr />
+      </div>
 
-        <div className="flex flex-wrap">
+      {/* Right side (List of categories) */}
+      <div className="md:w-2/3 p-3">
+        <div className="text-xl font-semibold mb-4">Category List</div>
+
+        {/* Categories buttons in a responsive grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {categories?.map((category) => (
             <div key={category._id}>
               <button
-                className="bg-white border border-pink-500 text-pink-500 py-2 px-4 rounded-lg m-3 hover:bg-pink-500 hover:text-white focus:outline-none foucs:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
+                className="bg-white border border-pink-500 text-pink-500 py-2 px-4 rounded-lg w-full hover:bg-pink-500 hover:text-white focus:outline-none foucs:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
                 onClick={() => {
-                  {
-                    setModalVisible(true);
-                    setSelectedCategory(category);
-                    setUpdatingName(category.name);
-                  }
+                  setModalVisible(true);
+                  setSelectedCategory(category);
+                  setUpdatingName(category.name);
                 }}
               >
                 {category.name}
@@ -121,17 +124,18 @@ const CategoryList = () => {
             </div>
           ))}
         </div>
-
-        <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
-          <CategoryForm
-            value={updatingName}
-            setValue={(value) => setUpdatingName(value)}
-            handleSubmit={handleUpdateCategory}
-            buttonText="Update"
-            handleDelete={handleDeleteCategory}
-          />
-        </Modal>
       </div>
+
+      {/* Modal for updating category */}
+      <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
+        <CategoryForm
+          value={updatingName}
+          setValue={(value) => setUpdatingName(value)}
+          handleSubmit={handleUpdateCategory}
+          buttonText="Update"
+          handleDelete={handleDeleteCategory}
+        />
+      </Modal>
     </div>
   );
 };

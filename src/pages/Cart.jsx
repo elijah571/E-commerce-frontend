@@ -24,18 +24,19 @@ const Cart = () => {
 
   return (
     <>
-      <div className="container flex justify-around items-start flex wrap mx-auto mt-20">
+      <div className="container flex flex-col md:flex-row justify-around items-start flex-wrap mx-auto mt-20">
         {cartItems.length === 0 ? (
-          <div>
-            Your cart is empty <Link to="/shop">Go To Shop</Link>
+          <div className="text-center">
+            Your cart is empty. <Link to="/shop" className="text-pink-500">Go to Shop</Link>
           </div>
         ) : (
           <>
-            <div className="flex flex-col w-[80%]">
+            {/* Cart Items */}
+            <div className="flex flex-col w-full md:w-3/4">
               <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
 
               {cartItems.map((item) => (
-                <div key={item._id} className="flex items-enter mb-[1rem] pb-2">
+                <div key={item._id} className="flex items-center mb-4 pb-2 border-b border-gray-300">
                   <div className="w-[5rem] h-[5rem]">
                     <img
                       src={item.image}
@@ -45,12 +46,12 @@ const Cart = () => {
                   </div>
 
                   <div className="flex-1 ml-4">
-                    <Link to={`/product/${item._id}`} className="text-pink-500">
+                    <Link to={`/product/${item._id}`} className="text-pink-500 hover:underline">
                       {item.name}
                     </Link>
 
-                    <div className="mt-2 text-white">{item.brand}</div>
-                    <div className="mt-2 text-white font-bold">
+                    <div className="mt-2 text-gray-500">{item.brand}</div>
+                    <div className="mt-2 text-gray-700 font-bold">
                       $ {item.price}
                     </div>
                   </div>
@@ -73,17 +74,18 @@ const Cart = () => {
 
                   <div>
                     <button
-                      className="text-red-500 mr-[5rem]"
+                      className="text-red-500 hover:text-red-700 mr-[5rem]"
                       onClick={() => removeFromCartHandler(item._id)}
                     >
-                      <FaTrash className="ml-[1rem] mt-[.5rem]" />
+                      <FaTrash className="ml-[1rem] mt-[.5rem] text-xl hover:scale-110 transition-all ease-in-out" />
                     </button>
                   </div>
                 </div>
               ))}
 
-              <div className="mt-8 w-[40rem]">
-                <div className="p-4 rounded-lg">
+              {/* Cart Summary */}
+              <div className="mt-8 w-full md:w-[40rem]">
+                <div className="p-4 rounded-lg bg-gray-100">
                   <h2 className="text-xl font-semibold mb-2">
                     Items ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                   </h2>
@@ -96,7 +98,7 @@ const Cart = () => {
                   </div>
 
                   <button
-                    className="bg-pink-500 mt-4 py-2 px-4 rounded-full text-lg w-full"
+                    className="bg-pink-500 mt-4 py-2 px-4 rounded-full text-lg w-full hover:bg-pink-600 disabled:bg-gray-400"
                     disabled={cartItems.length === 0}
                     onClick={checkoutHandler}
                   >

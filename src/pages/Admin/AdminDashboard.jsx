@@ -3,13 +3,11 @@ import Loader from "../../Components/Loader";
 import OrderList from "./OrderList";
 import { useEffect, useState } from "react";
 import { useGetUsersQuery } from "../../redux/api/usersApiSlice";
-
 import {
   useGetTotalOrdersQuery,
   useGetTotalSalesByDateQuery,
   useGetTotalSalesQuery,
 } from "../../redux/api/orderApiSlice";
-
 
 const AdminDashboard = () => {
   const { data: sales, isLoading } = useGetTotalSalesQuery();
@@ -89,56 +87,59 @@ const AdminDashboard = () => {
   }, [salesDetail]);
 
   return (
-    <>
-
-      <section className="xl:ml-[4rem] md:ml-[0rem] mt-32">
-        <div className="w-[80%] flex justify-around flex-wrap">
-          <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
-            <div className="font-bold rounded-full w-[3rem] bg-pink-500 text-center p-3">
-              $
-            </div>
-
-            <p className="mt-5">Sales</p>
-            <h1 className="text-xl font-bold">
-              $ {isLoading ? <Loader /> : sales.totalSales.toFixed(2)}
-            </h1>
+    <section className="xl:ml-[4rem] md:ml-[0rem] mt-32 px-4 sm:px-6 md:px-8 lg:px-10">
+      {/* Cards - Sales, Customers, and Orders */}
+      <div className="w-full flex flex-wrap justify-between gap-4 lg:gap-8">
+        {/* Sales Card */}
+        <div className="rounded-lg bg-black p-5 w-full sm:w-[20rem] lg:w-[20rem] mt-5">
+          <div className="font-bold rounded-full w-[3rem] bg-pink-500 text-center p-3">
+            $
           </div>
-          <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
-            <div className="font-bold rounded-full w-[3rem] bg-pink-500 text-center p-3">
-              $
-            </div>
-
-            <p className="mt-5">Customers</p>
-            <h1 className="text-xl font-bold">
-              $ {isLoading ? <Loader /> : customers?.length}
-            </h1>
-          </div>
-          <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
-            <div className="font-bold rounded-full w-[3rem] bg-pink-500 text-center p-3">
-              $
-            </div>
-
-            <p className="mt-5">All Orders</p>
-            <h1 className="text-xl font-bold">
-              $ {isLoading ? <Loader /> : orders?.totalOrders}
-            </h1>
-          </div>
+          <p className="mt-5">Sales</p>
+          <h1 className="text-xl font-bold">
+            {isLoading ? <Loader /> : `$${sales.totalSales.toFixed(2)}`}
+          </h1>
         </div>
 
-        <div className="ml-[10rem] mt-[4rem]">
-          <Chart
-            options={state.options}
-            series={state.series}
-            type="bar"
-            width="70%"
-          />
+        {/* Customers Card */}
+        <div className="rounded-lg bg-black p-5 w-full sm:w-[20rem] lg:w-[20rem] mt-5">
+          <div className="font-bold rounded-full w-[3rem] bg-pink-500 text-center p-3">
+            $
+          </div>
+          <p className="mt-5">Customers</p>
+          <h1 className="text-xl font-bold">
+            {isLoading ? <Loader /> : customers?.length}
+          </h1>
         </div>
 
-        <div className="mt-[4rem]">
-          <OrderList />
+        {/* Orders Card */}
+        <div className="rounded-lg bg-black p-5 w-full sm:w-[20rem] lg:w-[20rem] mt-5">
+          <div className="font-bold rounded-full w-[3rem] bg-pink-500 text-center p-3">
+            $
+          </div>
+          <p className="mt-5">All Orders</p>
+          <h1 className="text-xl font-bold">
+            {isLoading ? <Loader /> : orders?.totalOrders}
+          </h1>
         </div>
-      </section>
-    </>
+      </div>
+
+      {/* Chart */}
+      <div className="w-full mt-[4rem] flex justify-center">
+        <Chart
+          options={state.options}
+          series={state.series}
+          type="line"
+          width="100%"
+          height={400}
+        />
+      </div>
+
+      {/* Order List */}
+      <div className="mt-[4rem]">
+        <OrderList />
+      </div>
+    </section>
   );
 };
 

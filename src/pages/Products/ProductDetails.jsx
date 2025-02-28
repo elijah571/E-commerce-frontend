@@ -66,10 +66,10 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className="mt-28">
+      <div className="mt-10 px-4">
         <Link
           to="/"
-          className="text-white font-semibold hover:underline ml-[10rem]"
+          className="text-pink-600 font-semibold hover:underline"
         >
           Go Back
         </Link>
@@ -82,58 +82,49 @@ const ProductDetails = () => {
           {error?.data?.message || error.message}
         </Message>
       ) : (
-        <>
-          <div className="flex flex-wrap relative items-between mt-[2rem] ml-[10rem]">
-            <div>
+        <div className="mt-8 px-4">
+          <div className="flex flex-col lg:flex-row gap-8">
+            <div className="w-full lg:w-1/2">
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full xl:w-[50rem] lg:w-[45rem] md:w-[30rem] sm:w-[20rem] mr-[2rem]"
+                className="w-full h-auto object-cover rounded-lg shadow-md"
               />
-
               <HeartIcon product={product} />
             </div>
 
-            <div className="flex flex-col justify-between">
-              <h2 className="text-2xl font-semibold">{product.name}</h2>
-              <p className="my-4 xl:w-[35rem] lg:w-[35rem] md:w-[30rem] text-[#B0B0B0]">
-                {product.description}
-              </p>
+            <div className="w-full lg:w-1/2">
+              <h2 className="text-3xl font-semibold mb-4">{product.name}</h2>
+              <p className="text-gray-600 mb-4">{product.description}</p>
+              <p className="text-4xl font-bold text-pink-600 mb-6">$ {product.price}</p>
 
-              <p className="text-5xl my-4 font-extrabold">$ {product.price}</p>
-
-              <div className="flex items-center justify-between w-[20rem]">
-                <div className="one">
-                  <h1 className="flex items-center mb-6">
-                    <FaStore className="mr-2 text-white" /> Brand:{" "}
-                    {product.brand}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div>
+                  <h1 className="flex items-center mb-4">
+                    <FaStore className="mr-2 text-pink-600" /> Brand: {product.brand}
                   </h1>
-                  <h1 className="flex items-center mb-6 w-[20rem]">
-                    <FaClock className="mr-2 text-white" /> Added:{" "}
-                    {moment(product.createAt).fromNow()}
+                  <h1 className="flex items-center mb-4">
+                    <FaClock className="mr-2 text-pink-600" /> Added: {moment(product.createAt).fromNow()}
                   </h1>
-                  <h1 className="flex items-center mb-6">
-                    <FaStar className="mr-2 text-white" /> Reviews:{" "}
-                    {product.numReviews}
+                  <h1 className="flex items-center mb-4">
+                    <FaStar className="mr-2 text-pink-600" /> Reviews: {product.numReviews}
                   </h1>
                 </div>
 
-                <div className="two">
-                  <h1 className="flex items-center mb-6">
-                    <FaStar className="mr-2 text-white" /> Ratings: {rating}
+                <div>
+                  <h1 className="flex items-center mb-4">
+                    <FaStar className="mr-2 text-pink-600" /> Ratings: {rating}
                   </h1>
-                  <h1 className="flex items-center mb-6">
-                    <FaShoppingCart className="mr-2 text-white" /> Quantity:{" "}
-                    {product.quantity}
+                  <h1 className="flex items-center mb-4">
+                    <FaShoppingCart className="mr-2 text-pink-600" /> Quantity: {product.quantity}
                   </h1>
-                  <h1 className="flex items-center mb-6 w-[10rem]">
-                    <FaBox className="mr-2 text-white" /> In Stock:{" "}
-                    {product.countInStock}
+                  <h1 className="flex items-center mb-4">
+                    <FaBox className="mr-2 text-pink-600" /> In Stock: {product.countInStock}
                   </h1>
                 </div>
               </div>
 
-              <div className="flex justify-between flex-wrap">
+              <div className="flex items-center gap-4 mb-6">
                 <Ratings
                   value={product.rating}
                   text={`${product.numReviews} reviews`}
@@ -144,7 +135,7 @@ const ProductDetails = () => {
                     <select
                       value={qty}
                       onChange={(e) => setQty(e.target.value)}
-                      className="p-2 w-[6rem] rounded-lg text-black"
+                      className="p-2 w-full md:w-[6rem] rounded-lg border-gray-300 text-black"
                     >
                       {[...Array(product.countInStock).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
@@ -156,31 +147,29 @@ const ProductDetails = () => {
                 )}
               </div>
 
-              <div className="btn-container">
-                <button
-                  onClick={addToCartHandler}
-                  disabled={product.countInStock === 0}
-                  className="bg-pink-600 text-white py-2 px-4 rounded-lg mt-4 md:mt-0"
-                >
-                  Add To Cart
-                </button>
-              </div>
-            </div>
-
-            <div className="mt-[5rem] container flex flex-wrap items-start justify-between ml-[10rem]">
-              <ProductTabs
-                loadingProductReview={loadingProductReview}
-                userInfo={userInfo}
-                submitHandler={submitHandler}
-                rating={rating}
-                setRating={setRating}
-                comment={comment}
-                setComment={setComment}
-                product={product}
-              />
+              <button
+                onClick={addToCartHandler}
+                disabled={product.countInStock === 0}
+                className="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-lg transition duration-300 ease-in-out shadow-md"
+              >
+                Add To Cart
+              </button>
             </div>
           </div>
-        </>
+
+          <div className="mt-12">
+            <ProductTabs
+              loadingProductReview={loadingProductReview}
+              userInfo={userInfo}
+              submitHandler={submitHandler}
+              rating={rating}
+              setRating={setRating}
+              comment={comment}
+              setComment={setComment}
+              product={product}
+            />
+          </div>
+        </div>
       )}
     </>
   );

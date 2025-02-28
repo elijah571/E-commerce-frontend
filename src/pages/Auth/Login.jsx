@@ -38,20 +38,16 @@ const Login = () => {
       toast.error(err?.data?.message || "Login failed");
     }
   };
-  
 
   return (
     <div>
-      <section className="pl-[10rem] flex items-center justify-center">
-        <div className="mr-[4rem] mt-[5rem]">
-          <h1 className="text-2xl font-semibold mb-4">Sign In</h1>
+      <section className="flex items-center justify-center py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
+          <h1 className="text-2xl font-semibold text-center text-gray-800 mb-6">Sign In</h1>
 
-          <form onSubmit={submitHandler} className="container w-[40rem]">
-            <div className="my-[2rem]">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-white"
-              >
+          <form onSubmit={submitHandler}>
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email Address
               </label>
               <input
@@ -65,10 +61,7 @@ const Login = () => {
             </div>
 
             <div className="mb-4">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-white"
-              >
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
               </label>
               <input
@@ -84,28 +77,26 @@ const Login = () => {
             <button
               disabled={isLoading}
               type="submit"
-              className="bg-pink-500 text-white px-4 py-2 rounded cursor-pointer my-[1rem]"
+              className="w-full bg-pink-500 text-white py-2 px-4 rounded-lg my-4"
             >
               {isLoading ? "Signing In..." : "Sign In"}
             </button>
 
             {isLoading && <Loader />}
+
+            <div className="mt-4 text-center">
+              <p className="text-sm text-gray-600">
+                New Customer?{" "}
+                <Link
+                  to={redirect ? `/register?redirect=${redirect}` : "/register"}
+                  className="text-pink-500 hover:underline"
+                >
+                  Register
+                </Link>
+              </p>
+            </div>
           </form>
-
-          <div className="mt-4">
-            <p className="text-white">
-              New Customer?{" "}
-              <Link
-                to={redirect ? `/register?redirect=${redirect}` : "/register"}
-                className="text-pink-500 hover:underline"
-              >
-                Register
-              </Link>
-            </p>
-          </div>
         </div>
-
-       
       </section>
     </div>
   );

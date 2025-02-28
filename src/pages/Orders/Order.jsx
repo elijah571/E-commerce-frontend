@@ -93,14 +93,14 @@ const Order = () => {
   ) : error ? (
     <Messsage variant="danger">{error.data.message}</Messsage>
   ) : (
-    <div className="container flex flex-col md:flex-row mt-20">
+    <div className="container flex flex-col md:flex-row mt-20 px-4 md:px-8">
       <div className="md:w-2/3 pr-4">
-        <div className="border gray-300 mt-5 pb-4 mb-5">
+        <div className="border border-gray-300 mt-5 pb-4 mb-5">
           {order.orderItems.length === 0 ? (
             <Messsage>Order is empty</Messsage>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-[80%]">
+              <table className="min-w-full table-auto text-sm md:text-base">
                 <thead className="border-b-2">
                   <tr>
                     <th className="p-2">Image</th>
@@ -123,7 +123,9 @@ const Order = () => {
                       </td>
 
                       <td className="p-2">
-                        <Link to={`/product/${item.product}`}>{item.name}</Link>
+                        <Link to={`/product/${item.product}`} className="text-blue-500">
+                          {item.name}
+                        </Link>
                       </td>
 
                       <td className="p-2 text-center">{item.qty}</td>
@@ -199,13 +201,11 @@ const Order = () => {
               <Loader />
             ) : (
               <div>
-                <div>
-                  <PayPalButtons
-                    createOrder={createOrder}
-                    onApprove={onApprove}
-                    onError={onError}
-                  ></PayPalButtons>
-                </div>
+                <PayPalButtons
+                  createOrder={createOrder}
+                  onApprove={onApprove}
+                  onError={onError}
+                />
               </div>
             )}
           </div>

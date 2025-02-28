@@ -18,6 +18,8 @@ const AllProducts = () => {
       <div className="text-center mb-10">
         <h1 className="text-3xl font-bold">All Products ({products.length})</h1>
       </div>
+
+      {/* Responsive Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {products.map((product) => (
           <div
@@ -25,6 +27,7 @@ const AllProducts = () => {
             className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300"
           >
             <Link to={`/admin/product/update/${product._id}`}>
+              {/* Responsive image */}
               <img
                 src={product.image}
                 alt={product.name}

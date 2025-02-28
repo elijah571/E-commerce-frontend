@@ -58,6 +58,24 @@ const Header = () => {
     arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024, // For tablets
+        settings: {
+          arrows: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768, // For mobile
+        settings: {
+          arrows: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -65,11 +83,11 @@ const Header = () => {
       <Slider {...settings}>
         {banners.map((banner, index) => (
           <div key={index} className="w-full relative">
-            <div className="relative w-full h-[75vh]">
+            <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[75vh] lg:h-[80vh]">
               <img
                 src={banner.image}
                 alt={`Banner ${index + 1}`}
-                className="w-full h-full object-cover position-center"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>

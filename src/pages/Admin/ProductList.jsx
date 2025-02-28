@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
-
 import {
   useCreateProductMutation,
   useUploadProductImageMutation,
@@ -67,8 +66,8 @@ const ProductList = () => {
   };
 
   return (
-    <div className="container  sm:mx-[2rem] mt-20">
-      <div className="flex flex-col md:flex-row items-center justify-center w-full ">
+    <div className="container sm:mx-[2rem] mt-20 px-4">
+      <div className="flex flex-col md:flex-row items-center justify-center w-full">
         <div className="md:w-3/4 p-5">
           <h1 className="text-2xl font-bold mb-5">Create Product</h1>
 
@@ -97,7 +96,7 @@ const ProductList = () => {
 
           {/* Form Fields Section */}
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Name and Price */}
               <div>
                 <label htmlFor="name" className="block font-bold mb-2">
