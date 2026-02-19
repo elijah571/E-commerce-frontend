@@ -1,7 +1,7 @@
-import { FaTrash } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { addToCart, removeFromCart } from "../redux/features/cart/cartSlice";
+import { FaTrash } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { addToCart, removeFromCart } from '../redux/features/cart/cartSlice';
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const Cart = () => {
   };
 
   const checkoutHandler = () => {
-    navigate("/login?redirect=/shipping");
+    navigate('/login?redirect=/shipping');
   };
 
   return (
@@ -27,7 +27,10 @@ const Cart = () => {
       <div className="container flex flex-col md:flex-row justify-around items-start flex-wrap mx-auto mt-20">
         {cartItems.length === 0 ? (
           <div className="text-center">
-            Your cart is empty. <Link to="/shop" className="text-pink-500">Go to Shop</Link>
+            Your cart is empty.{' '}
+            <Link to="/shop" className="text-pink-500">
+              Go to Shop
+            </Link>
           </div>
         ) : (
           <>
@@ -36,17 +39,23 @@ const Cart = () => {
               <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
 
               {cartItems.map((item) => (
-                <div key={item._id} className="flex items-center mb-4 pb-2 border-b border-gray-300">
+                <div
+                  key={item._id}
+                  className="flex items-center mb-4 pb-2 border-b border-gray-300"
+                >
                   <div className="w-[5rem] h-[5rem]">
                     <img
-                      src={item.image}
+                      src={item.image.url}
                       alt={item.name}
                       className="w-full h-full object-cover rounded"
                     />
                   </div>
 
                   <div className="flex-1 ml-4">
-                    <Link to={`/product/${item._id}`} className="text-pink-500 hover:underline">
+                    <Link
+                      to={`/product/${item._id}`}
+                      className="text-pink-500 hover:underline"
+                    >
                       {item.name}
                     </Link>
 
@@ -91,7 +100,7 @@ const Cart = () => {
                   </h2>
 
                   <div className="text-2xl font-bold">
-                    ${" "}
+                    ${' '}
                     {cartItems
                       .reduce((acc, item) => acc + item.qty * item.price, 0)
                       .toFixed(2)}

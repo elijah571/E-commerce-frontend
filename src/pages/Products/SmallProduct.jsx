@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
-import HeartIcon from "./HeartIcon";
+import { Link } from 'react-router-dom';
+import HeartIcon from './HeartIcon';
 
 const SmallProduct = ({ product }) => {
   return (
     <div className="w-[20rem] sm:w-[22rem] md:w-[25rem] lg:w-[30rem] ml-[2rem] p-3 hover:shadow-lg hover:scale-105 transition-all ease-in-out">
       <div className="relative">
         <img
-          src={product.image}
+          src={product.image?.url}
           alt={product.name}
           className="h-[20rem] w-full object-cover rounded-md" // Ensures proper scaling of the image
         />

@@ -1,16 +1,16 @@
-import HeartIcon from "./HeartIcon";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import { addToCart } from "../../redux/features/cart/cartSlice";
+import HeartIcon from './HeartIcon';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { addToCart } from '../../redux/features/cart/cartSlice';
 
 const ProductCard = ({ p }) => {
   const dispatch = useDispatch();
 
   const addToCartHandler = (product, qty) => {
     dispatch(addToCart({ ...product, qty }));
-    toast.success("Item added successfully", {
+    toast.success('Item added successfully', {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 2000,
     });
@@ -25,9 +25,9 @@ const ProductCard = ({ p }) => {
           </span>
           <img
             className="cursor-pointer w-full"
-            src={p.image}
+            src={p.image?.url}
             alt={p.name}
-            style={{ height: "200px", objectFit: "contain" }}
+            style={{ height: '200px', objectFit: 'contain' }}
           />
         </Link>
         <HeartIcon product={p} />
@@ -38,9 +38,9 @@ const ProductCard = ({ p }) => {
           <h5 className="mb-2 text-xl text-white dark:text-white">{p?.name}</h5>
 
           <p className="text-black font-semibold text-pink-500">
-            {p?.price?.toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
+            {p?.price?.toLocaleString('en-US', {
+              style: 'currency',
+              currency: 'USD',
             })}
           </p>
         </div>

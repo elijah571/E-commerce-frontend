@@ -1,26 +1,26 @@
-import HeartIcon from "./HeartIcon";
-import Loader from "../../Components/Loader";
-import Message from "../../Components/Message";
-import ProductTabs from "./ProductTabs";
-import Ratings from "./Ratings";
-import moment from "moment";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { addToCart } from "../../redux/features/cart/cartSlice";
+import HeartIcon from './HeartIcon';
+import Loader from '../../Components/Loader';
+import Message from '../../Components/Message';
+import ProductTabs from './ProductTabs';
+import Ratings from './Ratings';
+import moment from 'moment';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { addToCart } from '../../redux/features/cart/cartSlice';
 
 import {
   useGetProductDetailsQuery,
   useCreateReviewMutation,
-} from "../../redux/api/productApiSlice";
+} from '../../redux/api/productApiSlice';
 import {
   FaBox,
   FaClock,
   FaShoppingCart,
   FaStar,
   FaStore,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 
 const ProductDetails = () => {
   const { id: productId } = useParams();
@@ -29,7 +29,7 @@ const ProductDetails = () => {
 
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
 
   const {
     data: product,
@@ -53,7 +53,7 @@ const ProductDetails = () => {
         comment,
       }).unwrap();
       refetch();
-      toast.success("Review created successfully");
+      toast.success('Review created successfully');
     } catch (error) {
       toast.error(error?.data || error.message);
     }
@@ -61,16 +61,13 @@ const ProductDetails = () => {
 
   const addToCartHandler = () => {
     dispatch(addToCart({ ...product, qty }));
-    navigate("/cart");
+    navigate('/cart');
   };
 
   return (
     <>
       <div className="mt-10 px-4">
-        <Link
-          to="/"
-          className="text-pink-600 font-semibold hover:underline"
-        >
+        <Link to="/" className="text-pink-600 font-semibold hover:underline">
           Go Back
         </Link>
       </div>
@@ -86,7 +83,7 @@ const ProductDetails = () => {
           <div className="flex flex-col lg:flex-row gap-8">
             <div className="w-full lg:w-1/2">
               <img
-                src={product.image}
+                src={product.image?.url}
                 alt={product.name}
                 className="w-full h-auto object-cover rounded-lg shadow-md"
               />
@@ -96,18 +93,23 @@ const ProductDetails = () => {
             <div className="w-full lg:w-1/2">
               <h2 className="text-3xl font-semibold mb-4">{product.name}</h2>
               <p className="text-gray-600 mb-4">{product.description}</p>
-              <p className="text-4xl font-bold text-pink-600 mb-6">$ {product.price}</p>
+              <p className="text-4xl font-bold text-pink-600 mb-6">
+                $ {product.price}
+              </p>
 
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div>
                   <h1 className="flex items-center mb-4">
-                    <FaStore className="mr-2 text-pink-600" /> Brand: {product.brand}
+                    <FaStore className="mr-2 text-pink-600" /> Brand:{' '}
+                    {product.brand}
                   </h1>
                   <h1 className="flex items-center mb-4">
-                    <FaClock className="mr-2 text-pink-600" /> Added: {moment(product.createAt).fromNow()}
+                    <FaClock className="mr-2 text-pink-600" /> Added:{' '}
+                    {moment(product.createAt).fromNow()}
                   </h1>
                   <h1 className="flex items-center mb-4">
-                    <FaStar className="mr-2 text-pink-600" /> Reviews: {product.numReviews}
+                    <FaStar className="mr-2 text-pink-600" /> Reviews:{' '}
+                    {product.numReviews}
                   </h1>
                 </div>
 
@@ -116,10 +118,12 @@ const ProductDetails = () => {
                     <FaStar className="mr-2 text-pink-600" /> Ratings: {rating}
                   </h1>
                   <h1 className="flex items-center mb-4">
-                    <FaShoppingCart className="mr-2 text-pink-600" /> Quantity: {product.quantity}
+                    <FaShoppingCart className="mr-2 text-pink-600" /> Quantity:{' '}
+                    {product.quantity}
                   </h1>
                   <h1 className="flex items-center mb-4">
-                    <FaBox className="mr-2 text-pink-600" /> In Stock: {product.countInStock}
+                    <FaBox className="mr-2 text-pink-600" /> In Stock:{' '}
+                    {product.countInStock}
                   </h1>
                 </div>
               </div>
